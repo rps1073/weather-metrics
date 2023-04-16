@@ -1,0 +1,10 @@
+numpy==1.24.2
+pandas==2.0.0
+psycopg2==2.9.6
+python-dateutil==2.8.2
+python-decouple==3.8
+pytz==2023.3
+six==1.16.0
+SQLAlchemy==2.0.9
+typing_extensions==4.5.0
+tzdata==2023.3
