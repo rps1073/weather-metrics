@@ -38,6 +38,7 @@ try:
     print("Querying API")
     response = requests.request("GET", url, headers={}, data={})
     data = response.json()
+    print(data)
 
     forecast_df_parsed = parse_daily_forecast(data)
 
