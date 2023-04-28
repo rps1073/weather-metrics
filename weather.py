@@ -38,15 +38,8 @@ try:
     print('Querying API')
     response = requests.request("GET", url, headers={}, data={})
     data = response.json()
-    
-    location_data = data['location']
-    location_series = pd.Series(location_data)
-    print(location_series)
 
-    day_forecast = data['forecast']['forecastday']
-    forecast_df = pd.DataFrame(day_forecast)
-    print(forecast_df)
-    forecast_df_parsed = parse_daily_forecast(forecast_df, location_series)
+    forecast_df_parsed = parse_daily_forecast(data)
 
     print('Writing to db')
     write_pandas(conn, forecast_df_parsed, 'DAILY_FORECAST')
