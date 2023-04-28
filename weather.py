@@ -41,9 +41,11 @@ try:
     
     location_data = data['location']
     location_series = pd.Series(location_data)
+    print(location_series)
 
     day_forecast = data['forecast']['forecastday']
     forecast_df = pd.DataFrame(day_forecast)
+    print(forecast_df)
     forecast_df_parsed = parse_daily_forecast(forecast_df, location_series)
 
     print('Writing to db')
