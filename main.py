@@ -1,26 +1,11 @@
-from dotenv import load_dotenv
-import os
 import requests
-import pandas as pd
 import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 from model.parse_daily_forecast import parse_daily_forecast
+from constants.config import config
+
 
 print("Starting task")
-load_dotenv(".env")
-
-config = {
-    "snowflake_user": os.environ["snowflake_user"],
-    "snowflake_pw": os.environ["snowflake_pw"],
-    "snowflake_account": os.environ["snowflake_account"],
-    "snowflake_warehouse": os.environ["snowflake_warehouse"],
-    "snowflake_database": os.environ["snowflake_database"],
-    "snowflake_schema": os.environ["snowflake_schema"],
-    "api_key": os.environ["api_key"],
-    "location": os.environ["location"],
-    "start_date": os.environ["start_date"],
-    "end_date": os.environ["end_date"],
-}
 
 try:
     print("Connecting to db")
