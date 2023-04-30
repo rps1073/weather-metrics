@@ -1,8 +1,8 @@
-import requests
 import snowflake.connector
-from snowflake.connector.pandas_tools import write_pandas
-from utilities.parse_daily_forecast import parse_daily_forecast
 from constants.config import config
+from utilities.extract_daily_forecast import extract_daily_forecast
+from utilities.transform_daily_forecast import transform_daily_forecast
+from utilities.load_daily_forecast import load_daily_forecast
 
 
 print("Starting task")
@@ -18,16 +18,9 @@ try:
         schema=config["snowflake_schema"],
     )
 
-    url = f"https://api.weatherapi.com/v1/history.json?key={config['api_key']}&q={config['location']}&dt={config['start_date']}&end_dt={config['end_date']}"
-
-    print("Querying API")
-    response = requests.request("GET", url, headers={}, data={})
-    data = response.json()
-
-    forecast_df_parsed = parse_daily_forecast(data)
-
-    print("Writing to db")
-    write_pandas(conn, forecast_df_parsed, "DAILY_FORECAST")
+    data = extract_daily_forecast(config)
+    forecast_df_parsed = transform_daily_forecast(data)
+    load_daily_forecast(conn, forecast_df_parsed)
 
     conn.close()
 
