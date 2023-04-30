@@ -1,6 +1,8 @@
 import requests
+from prefect import task
 
 
+@task
 def extract_daily_forecast(config):
     print("Querying API")
     url = f"https://api.weatherapi.com/v1/history.json?key={config['api_key']}&q={config['location']}&dt={config['start_date']}&end_dt={config['end_date']}"

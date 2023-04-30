@@ -1,8 +1,6 @@
-import snowflake.connector
+from utilities.run_flow import run_flow
 from constants.config import config
-from utilities.extract_daily_forecast import extract_daily_forecast
-from utilities.transform_daily_forecast import transform_daily_forecast
-from utilities.load_daily_forecast import load_daily_forecast
+import snowflake.connector
 
 
 print("Starting task")
@@ -18,9 +16,7 @@ try:
         schema=config["snowflake_schema"],
     )
 
-    data = extract_daily_forecast(config)
-    forecast_df_parsed = transform_daily_forecast(data)
-    load_daily_forecast(conn, forecast_df_parsed)
+    run_flow(conn, config)
 
     conn.close()
 
