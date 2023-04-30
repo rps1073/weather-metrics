@@ -1,6 +1,8 @@
 import pandas as pd
+from prefect import task
 
 
+@task(name="transform_daily_forecast_task")
 def transform_daily_forecast(data):
     location_data = data["location"]
     location_series = pd.Series(location_data)
