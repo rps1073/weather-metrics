@@ -1,5 +1,5 @@
 from constants.weather_api_sample_response import weather_api_sample_response
-from model.parse_daily_forecast import parse_daily_forecast
+from utilities.parse_daily_forecast import parse_daily_forecast
 import numpy
 
 

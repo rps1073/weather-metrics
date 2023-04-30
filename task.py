@@ -1,7 +1,7 @@
 import requests
 import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
-from model.parse_daily_forecast import parse_daily_forecast
+from utilities.parse_daily_forecast import parse_daily_forecast
 from constants.config import config
 
 
