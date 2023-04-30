@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def parse_daily_forecast(data):
+def transform_daily_forecast(data):
     location_data = data["location"]
     location_series = pd.Series(location_data)
 
